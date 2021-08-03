@@ -1,23 +1,25 @@
 import glob, os
-import xml.etree.ElementTree as ET
+from sys import version
 from tkinter import filedialog
 import tkinter as tk
+import re
 
 def rodar(v, path):
     print('rodando panel')
-
+    versionTemplate = '<displayversion>'+v+'</displayversion>'
     os.chdir(path)
     for file in glob.glob(path+"/**/*.moti", recursive= True):
 
-        print(file) ## 5.4.4
-
-        mytree = ET.parse(file)
-        mytree.getroot()[0].text = v
-        
-        try:
-            mytree.write(str(file))
-        except:
-            print('deu ruim')
+        #print(file) ## 5.4.4
+            
+        document = open(file, "r").read()
+        output = re.sub(r"(?s)<displayversion>.*?</displayversion>", r"%s" % versionTemplate, document, 1)
+        with open(file, 'w') as f:
+            f.write(output)
+        # try:
+            
+        # except:
+        #     print('deu ruim')
 
 def panel(path):
     print('rodando panel')
