@@ -30,8 +30,6 @@ def panel(path):
 
     entry1 = tk.Entry (root) 
     canvas1.create_window(200, 140, window=entry1)
-    def btnSelect():
-        root.withdraw()
     def Proceed ():  
         input = entry1.get()
         if input != '':
@@ -62,6 +60,8 @@ def run():
     errmsg = 'Error!'
     tk.Button(rootd ,text='Clique para selecionar um diretório', 
         command=callback).pack(fill=tk.X)
+    rootd.attributes('-topmost',True)
+    rootd.update()
     tk.mainloop()
     
 
