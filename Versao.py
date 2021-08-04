@@ -5,21 +5,19 @@ import tkinter as tk
 import re
 
 def rodar(v, path):
-    print('rodando panel')
+    print('rodando panel em', path)
     versionTemplate = '<displayversion>'+v+'</displayversion>'
     os.chdir(path)
-    for file in glob.glob(path+"/**/*.moti", recursive= True):
 
-        #print(file) ## 5.4.4
-            
+    for file in glob.glob(path+"/**/*.mot*", recursive= True):
+
+        print(file) ## 5.4.4
+
         document = open(file, "r").read()
         output = re.sub(r"(?s)<displayversion>.*?</displayversion>", r"%s" % versionTemplate, document, 1)
         with open(file, 'w') as f:
             f.write(output)
-        # try:
-            
-        # except:
-        #     print('deu ruim')
+
 
 def panel(path):
     print('rodando panel')
