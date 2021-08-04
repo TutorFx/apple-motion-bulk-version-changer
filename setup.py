@@ -14,4 +14,4 @@ setup(
 
 #python3 setup.py py2app -A
 
-#python3 -m PyInstaller --onefile --icon=/Users/lenofx/Desktop/Renomeador/app.ico Versao.py
+#python3 -m PyInstaller --onefile -i leno.icns Versao.py
